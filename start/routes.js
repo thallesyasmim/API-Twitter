@@ -18,3 +18,7 @@ const Route = use('Route')
 
 Route.post('/register', 'AuthController.register')
 Route.post('/authenticate', 'AuthController.authenticate')
+
+Route.group(() => {
+  Route.resource('tweets', 'TweetController').apiOnly().except('update') // apiOnly() - Não vai criar rotas para os métodos de formulário 
+}).middleware('auth')                                                    // except() - Qual método não queremos utilizar
